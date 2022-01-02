@@ -16,7 +16,7 @@ public class SQLiteTest : MonoBehaviour
         string connection = "URI=file:" + Application.persistentDataPath + "/Main_DB";
         IDbConnection dbcon = new SqliteConnection(connection);
         dbcon.Open();
-
+        
         // Создаю таблицы Question и Player, если они не существуют
         IDbCommand dbcmd_question;
         dbcmd_question = dbcon.CreateCommand();
@@ -57,7 +57,7 @@ public class SQLiteTest : MonoBehaviour
         if(rows_question == 0)
         {
             IDbCommand cmnd = dbcon.CreateCommand();
-            cmnd.CommandText = "INSERT INTO Question (question_category,question_text,yes_time,yes_health,yes_progress,yes_money,no_time,no_health,no_progress,no_money) VALUES (4,'Sie müssen mit dem Zug zu Ihrem Hostel gelangen. Aber Sie möchten bei Ihrem Ticket sparen und Ihre Ankunft spülen. So gehen Sie vor: den Fahrpreis nicht bezahlen oder trotzdem zahlen?',0,0,-20,0,0,0,-60,0);";
+            cmnd.CommandText = "INSERT INTO Question (question_category,question_text,yes_time,yes_health,yes_progress,yes_money,no_time,no_health,no_progress,no_money) VALUES (4,'Sie müssen mit dem Zug zu Ihrem Hostel gelangen. Aber Sie möchten bei Ihrem Ticket sparen und Ihre Ankunft spülen. So gehen Sie vor: den Fahrpreis nicht bezahlen oder trotzdem zahlen?',0,0,0,-20,0,0,0,-60);";
             cmnd.ExecuteNonQuery();
             Debug.Log("Запись вставлена в таблицу Question. Количество записей: " + rows_question.ToString());
         }
@@ -66,6 +66,13 @@ public class SQLiteTest : MonoBehaviour
             Debug.Log("Записи уже имеются в таблице Question. Количество записей: " + rows_question.ToString());
         }
        
+
+        /*
+        IDbCommand del = dbcon.CreateCommand();
+        del.CommandText = "DROP TABLE Question; DROP TABLE Player";
+        del.ExecuteNonQuery();
+        */
+
         dbcon.Close();
 
         SceneManager.LoadScene(loadGame);
