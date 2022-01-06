@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 82632506}
   - component: {fileID: 82632505}
   m_Layer: 5
-  m_Name: TextYesTime
+  m_Name: TextYesMental
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -546,7 +546,7 @@ MonoBehaviour:
   show_current_health: {fileID: 1970493327}
   show_current_progress: {fileID: 1183390620}
   show_current_money: {fileID: 1501789262}
-  show_current_time: {fileID: 1878070431}
+  show_current_mental: {fileID: 1878070431}
 --- !u!4 &545243233
 Transform:
   m_ObjectHideFlags: 0
@@ -1360,12 +1360,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   show_question: {fileID: 586251384}
+  show_yes_mental: {fileID: 82632505}
   show_yes_health: {fileID: 198202130}
-  show_yes_time: {fileID: 82632505}
   show_yes_progress: {fileID: 231981845}
   show_yes_money: {fileID: 1040971379}
+  show_no_mental: {fileID: 1707001818}
   show_no_health: {fileID: 1027468455}
-  show_no_time: {fileID: 1707001818}
   show_no_progress: {fileID: 1741736290}
   show_no_money: {fileID: 1478272941}
 --- !u!4 &1540359341
@@ -1626,7 +1626,7 @@ GameObject:
   - component: {fileID: 1707001819}
   - component: {fileID: 1707001818}
   m_Layer: 5
-  m_Name: TextNoTime
+  m_Name: TextNoMental
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1782,7 +1782,7 @@ GameObject:
   - component: {fileID: 1878070432}
   - component: {fileID: 1878070431}
   m_Layer: 5
-  m_Name: TextCurrentTime
+  m_Name: TextCurrentMental
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

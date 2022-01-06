@@ -9,66 +9,65 @@ public class AtributeQuestionInitialization : MonoBehaviour
 {
     public Text show_question;
 
+    public Text show_yes_mental;
     public Text show_yes_health;
-    public Text show_yes_time;
     public Text show_yes_progress;
     public Text show_yes_money;
 
+    public Text show_no_mental;
     public Text show_no_health;
-    public Text show_no_time;
     public Text show_no_progress;
     public Text show_no_money;
 
     string question;
 
+    int yes_mental;
     int yes_health;
-    int yes_time;
     int yes_progress;
     int yes_money;
 
+    int no_mental;
     int no_health;
-    int no_time;
     int no_progress;
     int no_money;
+    // String db_name = "Main_DB";
 
     // Start is called before the first frame update
     void Start()
     {
-        string connection = "URI=file:" + Application.persistentDataPath + "/Main_DB";
-        IDbConnection dbcon = new SqliteConnection(connection);
-        dbcon.Open();
+        System.Random randomDirection = new System.Random();
+        int question_category = 1;
+        int question_id = randomDirection.Next(1, 25);
 
-        IDataReader points;
-        IDbCommand get_points = dbcon.CreateCommand();
-        get_points.CommandText = "SELECT * FROM Question";
-        points = get_points.ExecuteReader();
+        // Получаем таблицу Question
+        DataTable questionData = MyDataBase.GetTable("SELECT * FROM Question WHERE ID_question ="+question_id+" AND question_category ="+question_category+";");
+        // Получаем текст вопроса
+        // string questionText = int.Parse(questionData.Rows[0][0].ToString());
+        string questionText = questionData.Rows[0][2].ToString();
+        int yesMental = int.Parse(questionData.Rows[0][3].ToString());
+        int yesHealth = int.Parse(questionData.Rows[0][4].ToString());
+        int yesProgrgess = int.Parse(questionData.Rows[0][5].ToString());
+        int yesMoney = int.Parse(questionData.Rows[0][6].ToString());
+        int noMental = int.Parse(questionData.Rows[0][7].ToString());
+        int noHealth = int.Parse(questionData.Rows[0][8].ToString());
+        int noProgrgess = int.Parse(questionData.Rows[0][9].ToString());
+        int noMoney = int.Parse(questionData.Rows[0][10].ToString());
+        
+        // string nickname = MyDataBase.ExecuteQueryWithAnswer($"SELECT day FROM Player WHERE id = {idPlayer};");
+        // Debug.Log($"Вопрос {idQuestion} с текстом '{questionData.Rows[0][2].ToString()}'.");
 
-        question = points["question_text"].ToString();
+        show_question.text = questionText;
 
-        yes_health = Convert.ToInt32(points["yes_health"].ToString());
-        yes_time = Convert.ToInt32(points["yes_time"].ToString());
-        yes_progress = Convert.ToInt32(points["yes_progress"].ToString());
-        yes_money = Convert.ToInt32(points["yes_money"].ToString());
+        show_yes_mental.text = yesMental.ToString();
+        show_yes_health.text = yesHealth.ToString();
+        show_yes_progress.text = yesProgrgess.ToString();
+        show_yes_money.text = yesMoney.ToString();
 
-        no_health = Convert.ToInt32(points["no_health"].ToString());
-        no_time = Convert.ToInt32(points["no_time"].ToString());
-        no_progress = Convert.ToInt32(points["no_progress"].ToString());
-        no_money = Convert.ToInt32(points["no_money"].ToString());
-
-        dbcon.Close();
-
-        show_question.text = question.ToString();
-
-        show_yes_health.text = yes_health.ToString();
-        show_yes_time.text = yes_time.ToString();
-        show_yes_progress.text = yes_progress.ToString();
-        show_yes_money.text = yes_money.ToString();
-
-        show_no_health.text = no_health.ToString();
-        show_no_time.text = no_time.ToString();
-        show_no_progress.text = no_progress.ToString();
-        show_no_money.text = no_money.ToString();
-
+        show_no_mental.text = noMental.ToString();
+        show_no_health.text = noHealth.ToString();
+        show_no_progress.text = noProgrgess.ToString();
+        show_no_money.text = noMoney.ToString();
+        
     }
 
 }
