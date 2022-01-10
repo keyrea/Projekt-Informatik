@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class AtributeQuestionInitialization : MonoBehaviour
 {
+
     public Text show_question;
 
     public Text show_yes_mental;
@@ -19,6 +20,7 @@ public class AtributeQuestionInitialization : MonoBehaviour
     public Text show_no_progress;
     public Text show_no_money;
 
+
     string question;
 
     int yes_mental;
@@ -30,14 +32,26 @@ public class AtributeQuestionInitialization : MonoBehaviour
     int no_health;
     int no_progress;
     int no_money;
+
+
     // String db_name = "Main_DB";
 
     // Start is called before the first frame update
     void Start()
     {
         System.Random randomDirection = new System.Random();
+
         int question_category = 1;
-        int question_id = randomDirection.Next(1, 25);
+
+        // тут внесены мои изменения
+        DataTable selectIDmin = MyDataBase.GetTable("SELECT min(ID_question) FROM Question WHERE question_category = "+question_category+";");
+        DataTable selectIDmax = MyDataBase.GetTable("SELECT max(ID_question) FROM Question WHERE question_category = " + question_category + ";");
+
+        int IDmin = int.Parse(selectIDmin.Rows[0][0].ToString());
+        int IDmax = int.Parse(selectIDmax.Rows[0][0].ToString());
+
+        int question_id = randomDirection.Next(IDmin, IDmax);
+        // тут заканчиваются мои изменения
 
         // Получаем таблицу Question
         DataTable questionData = MyDataBase.GetTable("SELECT * FROM Question WHERE ID_question ="+question_id+" AND question_category ="+question_category+";");

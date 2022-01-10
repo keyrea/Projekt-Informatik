@@ -7,11 +7,14 @@ using UnityEngine.UI;
 
 public class AtributeInitialization : MonoBehaviour // инициализация 4 показателей
 {
+
     public Text show_current_day;
     public Text show_current_health; // текстовое поле для значения "Здоровье"
     public Text show_current_progress; // текстовое поле для значения "Знания"
     public Text show_current_money; // текстовое поле для значения "Деньги"
     public Text show_current_mental; // текстовое поле для значения "Время"
+
+    public int question_category;
 
     // int current_day;
     // int current_health;
@@ -36,7 +39,9 @@ public class AtributeInitialization : MonoBehaviour // инициализаци�
         show_current_health.text = current_health.ToString();
         show_current_progress.text = current_progress.ToString();
         show_current_money.text = current_money.ToString();
+
     }
+
     /*
     public int Health
     {
