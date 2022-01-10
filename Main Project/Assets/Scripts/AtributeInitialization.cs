@@ -12,17 +12,9 @@ public class AtributeInitialization : MonoBehaviour // инициализаци�
     public Text show_current_health; // текстовое поле для значения "Здоровье"
     public Text show_current_progress; // текстовое поле для значения "Знания"
     public Text show_current_money; // текстовое поле для значения "Деньги"
-    public Text show_current_mental; // текстовое поле для значения "Время"
+    public Text show_current_mental; // текстовое поле для значения "Ментальное здоровье"
 
-    public int question_category;
-
-    // int current_day;
-    // int current_health;
-    // int current_time;
-    // int current_progress;
-    // int current_money;
-
-   public void Start()
+    public void Start()
     {
 
         DataTable questionData = MyDataBase.GetTable("SELECT * FROM Player WHERE ID_player = 1;");
@@ -33,7 +25,7 @@ public class AtributeInitialization : MonoBehaviour // инициализаци�
         int current_health = int.Parse(questionData.Rows[0][3].ToString());
         int current_progress = int.Parse(questionData.Rows[0][4].ToString());
         int current_money = int.Parse(questionData.Rows[0][5].ToString());
-        
+
         show_current_day.text = current_day.ToString();
         show_current_mental.text = current_mental.ToString();
         show_current_health.text = current_health.ToString();
@@ -41,31 +33,5 @@ public class AtributeInitialization : MonoBehaviour // инициализаци�
         show_current_money.text = current_money.ToString();
 
     }
-
-    /*
-    public int Health
-    {
-        get { return health; }
-        set { health = Health; }
-    }
-
-    public int Study
-    {
-        get { return study; }
-        set { study = Study; }
-    }
-
-    public float Money
-    {
-        get { return money; }
-        set { money = Money; }
-    }
-
-    public float Time
-    {
-        get { return time; }
-        set { time = Time; }
-    }
-    */
 
 }
