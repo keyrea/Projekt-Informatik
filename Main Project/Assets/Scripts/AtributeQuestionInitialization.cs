@@ -28,8 +28,10 @@ public class AtributeQuestionInitialization : MonoBehaviour
         int question_category = get_question_category_int;
 
         // тут внесены изменения Кирилла
-        DataTable selectIDmin = MyDataBase.GetTable("SELECT min(ID_question) FROM Question WHERE question_category = " + question_category + ";");
-        DataTable selectIDmax = MyDataBase.GetTable("SELECT max(ID_question) FROM Question WHERE question_category = " + question_category + ";");
+        DataTable selectIDmin = 
+            MyDataBase.GetTable("SELECT min(ID_question) FROM Question WHERE question_category = " + question_category + ";");
+        DataTable selectIDmax = 
+            MyDataBase.GetTable("SELECT max(ID_question) FROM Question WHERE question_category = " + question_category + ";");
 
         int IDmin = int.Parse(selectIDmin.Rows[0][0].ToString());
         int IDmax = int.Parse(selectIDmax.Rows[0][0].ToString()) + 1;

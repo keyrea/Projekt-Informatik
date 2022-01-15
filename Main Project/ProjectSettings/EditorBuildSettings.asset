@@ -6,10 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/0_SceneMenu.unity
+    path: Assets/Scenes/00_SceneMenu.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/1_SceneGameMenu.unity
+    path: Assets/Scenes/10_SceneGameMenu.unity
     guid: eff51d6bf555b1e4b8c876325b83ae7c
   - enabled: 1
     path: Assets/Scenes/11_SceneGameMental.unity
@@ -23,6 +23,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/14_SceneGameMoney.unity
     guid: 7c50f0d109b386342b84fbd685e507e3
+  - enabled: 1
+    path: Assets/Scenes/20_SceneRandomEvent.unity
+    guid: 31c804e3f610a504dab09b190419a38f
+  - enabled: 1
+    path: Assets/Scenes/30_SceneGameOver.unity
+    guid: 70b7db0ac7f595b4eb4195a6fd1b8096
   - enabled: 0
     path: Assets/Scenes/SceneTestDB.unity
     guid: c4a4ecd8030cca5408d0cf228360915d
