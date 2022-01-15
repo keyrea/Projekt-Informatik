@@ -721,15 +721,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1324976590}
-        m_MethodName: NextScene
-        m_Mode: 3
+      - m_Target: {fileID: 1868704850}
+        m_MethodName: changeAtribute
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: yes
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &632553388
@@ -1517,15 +1517,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1324976590}
-        m_MethodName: NextScene
-        m_Mode: 3
+      - m_Target: {fileID: 1868704850}
+        m_MethodName: changeAtribute
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: no
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1604876836
@@ -1740,6 +1740,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1741736288}
   m_CullTransparentMesh: 0
+--- !u!1 &1868704849
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1868704851}
+  - component: {fileID: 1868704850}
+  m_Layer: 0
+  m_Name: AnswerManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1868704850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1868704849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de8b5787d72faff4ba72685c939289b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myGameObject: {fileID: 1324976589}
+  get_current_day: {fileID: 1942221931}
+  get_current_mental: {fileID: 1878070431}
+  get_current_health: {fileID: 1970493327}
+  get_current_progress: {fileID: 1183390620}
+  get_current_money: {fileID: 1501789262}
+  get_yes_mental: {fileID: 82632505}
+  get_yes_health: {fileID: 198202130}
+  get_yes_progress: {fileID: 231981845}
+  get_yes_money: {fileID: 1040971379}
+  get_no_mental: {fileID: 1707001818}
+  get_no_health: {fileID: 1027468455}
+  get_no_progress: {fileID: 1741736290}
+  get_no_money: {fileID: 1478272941}
+--- !u!4 &1868704851
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1868704849}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.18079059, y: 0.56855124, z: -45.031483}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1878070429
 GameObject:
   m_ObjectHideFlags: 0
