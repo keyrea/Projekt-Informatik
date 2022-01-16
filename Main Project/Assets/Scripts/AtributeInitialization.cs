@@ -7,7 +7,11 @@ using UnityEngine.UI;
 
 public class AtributeInitialization : MonoBehaviour // инициализация 4 показателей
 {
-
+    public AudioSource audioSource;
+    public AudioClip clip;
+    public float volume = 0.5f;
+    public float delay=40f;
+    public int delay1=4;
     public Text show_current_day;
     public Text show_current_health; // текстовое поле для значения "Здоровье"
     public Text show_current_progress; // текстовое поле для значения "Знания"
@@ -16,6 +20,7 @@ public class AtributeInitialization : MonoBehaviour // инициализаци�
 
     public void Start()
     {
+        // audioSource.PlayDelayed(delay1);
 
         DataTable questionData = MyDataBase.GetTable("SELECT * FROM Player WHERE ID_player = 1;");
         // Получаем текст вопроса
@@ -32,6 +37,9 @@ public class AtributeInitialization : MonoBehaviour // инициализаци�
         show_current_progress.text = current_progress.ToString();
         show_current_money.text = current_money.ToString();
 
+        
+        audioSource.PlayDelayed(delay1);
+        // audioSource.PlayOneShot(clip,volume);
     }
 
 }
