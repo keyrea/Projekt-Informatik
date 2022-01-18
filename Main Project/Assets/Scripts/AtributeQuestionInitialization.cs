@@ -10,6 +10,8 @@ public class AtributeQuestionInitialization : MonoBehaviour
 
     public Text show_question;
 
+    public Text show_question_type;
+
     public Text show_yes_mental;
     public Text show_yes_health;
     public Text show_yes_progress;
@@ -57,6 +59,7 @@ public class AtributeQuestionInitialization : MonoBehaviour
         // Debug.Log($"Вопрос {idQuestion} с текстом '{questionData.Rows[0][2].ToString()}'.");
 
         show_question.text = questionText;
+        show_question_type.text = question_category.ToString();
 
         show_yes_mental.text = yesMental.ToString();
         show_yes_health.text = yesHealth.ToString();
@@ -67,6 +70,7 @@ public class AtributeQuestionInitialization : MonoBehaviour
         show_no_health.text = noHealth.ToString();
         show_no_progress.text = noProgrgess.ToString();
         show_no_money.text = noMoney.ToString();
+
 
     }
 
