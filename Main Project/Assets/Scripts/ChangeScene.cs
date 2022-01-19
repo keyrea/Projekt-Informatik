@@ -1,6 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Data;
+﻿// using System.Collections;
+// using System.Collections.Generic;
+// using System.Data;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,27 +12,28 @@ public class ChangeScene : MonoBehaviour
     // public float delay=0.5f;
     // float m_LastPressTime;
     // float m_PressDelay = 0.001f;
-    public void NextScene(int _sceneNumber) // Метод для перехода к следующей сцене. Аргумент _sceneNumber - номер сцены. Сцены и их номера можно найти в Build Settings
+
+    // Метод для перехода к следующей сцене. Аргумент _sceneNumber - номер сцены. 
+    // Сцены и их номера можно найти в Build Settings
+    public void NextScene(int _sceneNumber)
     {
-        // audioSource.PlayOneShot(clip,volume);
-
-        // if (m_LastPressTime + m_PressDelay > Time.unscaledTime) return;
-        // m_LastPressTime = Time.unscaledTime;
-
         SceneManager.LoadScene(_sceneNumber);
     }
 
-    public void NextSceneAndToDefault(int _sceneNumber) // Метод для перехода к следующей сцене. Устанаваилвает значения параметров по умолчанию
+    // Метод для перехода к следующей сцене. Устанаваилвает значения параметров игрока по умолчанию
+    public void NextSceneAndToDefault(int _sceneNumber)
     {
-        // audioSource.PlayOneShot(clip,volume);
-        string result = MyDataBase.ExecuteQueryWithAnswer("UPDATE Player " + 
-                                "SET day = 1," + 
-                                "current_mental = 5," + 
-                                "current_health = 5," + 
-                                "current_progress = 5," + 
-                                "current_money = 5 " + 
+        string result = MyDataBase.ExecuteQueryWithAnswer("UPDATE Player " +
+                                "SET day = 1," +
+                                "current_mental = 5," +
+                                "current_health = 5," +
+                                "current_progress = 5," +
+                                "current_money = 5," +
+                                "block_mental = 0," +
+                                "block_health = 0," +
+                                "block_progress = 0," +
+                                "block_money = 0 " +
                                 "WHERE ID_player = 1;");
         SceneManager.LoadScene(_sceneNumber);
     }
-
 }

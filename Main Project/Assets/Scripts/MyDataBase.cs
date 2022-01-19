@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using UnityEngine.Networking;
+// using UnityEngine.Networking;
 using System.Data;
 using Mono.Data.Sqlite;
 using System.IO;
@@ -20,17 +20,17 @@ static class MyDataBase
     /// <summary> Возвращает путь к БД. Если её нет в нужной папке на Андроиде, то копирует её с исходного apk файла. </summary>
     private static string GetDatabasePath()
     {
-#if UNITY_EDITOR
-        return Path.Combine(Application.streamingAssetsPath, fileName);
-#elif UNITY_STANDALONE
+        #if UNITY_EDITOR
+            return Path.Combine(Application.streamingAssetsPath, fileName);
+        #elif UNITY_STANDALONE
             string filePath = Path.Combine(Application.dataPath, fileName);
             if(!File.Exists(filePath)) UnpackDatabase(filePath);
             return filePath;
-#elif UNITY_ANDROID
+        #elif UNITY_ANDROID
             string filePath = Path.Combine(Application.persistentDataPath, fileName);
             if(!File.Exists(filePath)) UnpackDatabase(filePath);
             return filePath;
-#endif
+        #endif
     }
 
     /// <summary> Распаковывает базу данных в указанный путь. </summary>
@@ -39,35 +39,17 @@ static class MyDataBase
     {
         string fromPath = Path.Combine(Application.streamingAssetsPath, fileName);
 
+        // в качестве альтернативы WWW предлагается UnityWebRequest
         WWW reader = new WWW(fromPath);
         while (!reader.isDone) { }
-
         File.WriteAllBytes(toPath, reader.bytes);
 
-
+        // но UnityWebRequest не работает на Android
 
         // UnityWebRequest reader_new = new UnityWebRequest(fromPath);
         // while (reader_new.isDone) { }
-
         // File.WriteAllBytes(toPath, reader_new.downloadHandler.data);
     }
-
-
-    // private IEnumerator OutputRoutine (string url)
-    // {
-    //     var output = new WWW(url);
-    //     yield return output;
-
-    //     String s = output.text;
-    // }
-
-    // private IEnumerator OutputRoutine (string url) {
-    //      var loaded = new UnityWebRequest(url);
-    //      loaded.downloadHandler = new DownloadHandlerBuffer();
-    //      yield return loaded.SendWebRequest();
-
-    //      s = loaded.downloadHandler.text;
-    // }
 
     /// <summary> Этот метод открывает подключение к БД. </summary>
     private static void OpenConnection()
@@ -85,7 +67,7 @@ static class MyDataBase
     }
 
     /// <summary> Этот метод выполняет запрос query. </summary>
-    /// <param name="query"> Собственно запрос. </param>
+    /// <param name="query"> Текст запроса. </param>
     public static void ExecuteQueryWithoutAnswer(string query)
     {
         OpenConnection();
@@ -95,7 +77,7 @@ static class MyDataBase
     }
 
     /// <summary> Этот метод выполняет запрос query и возвращает ответ запроса. </summary>
-    /// <param name="query"> Собственно запрос. </param>
+    /// <param name="query"> Текст запроса. </param>
     /// <returns> Возвращает значение 1 строки 1 столбца, если оно имеется. </returns>
     public static string ExecuteQueryWithAnswer(string query)
     {
@@ -109,7 +91,7 @@ static class MyDataBase
     }
 
     /// <summary> Этот метод возвращает таблицу, которая является результатом выборки запроса query. </summary>
-    /// <param name="query"> Собственно запрос. </param>
+    /// <param name="query"> Текст запроса. </param>
     public static DataTable GetTable(string query)
     {
         OpenConnection();

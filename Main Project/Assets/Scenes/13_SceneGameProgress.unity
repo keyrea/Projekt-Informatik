@@ -307,7 +307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   show_question: {fileID: 1423184044}
-  show_question_type: {fileID: 334484177}
+  show_question_category: {fileID: 334484177}
   show_yes_mental: {fileID: 146677083}
   show_yes_health: {fileID: 1895573347}
   show_yes_progress: {fileID: 1065265680}
@@ -438,7 +438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de25a9d707e2fd1438a7de8055177d06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 1041917590}
+  sceneAudioSource: {fileID: 1041917590}
   delay: 40
   show_current_day: {fileID: 1499245407}
   show_current_health: {fileID: 906161121}
@@ -555,7 +555,7 @@ GameObject:
   - component: {fileID: 334484178}
   - component: {fileID: 334484177}
   m_Layer: 5
-  m_Name: TextQuestionType
+  m_Name: TextQuestionCategory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -942,8 +942,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de8b5787d72faff4ba72685c939289b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myGameObject: {fileID: 1295531339}
-  get_question_type: {fileID: 334484177}
+  sceneManager: {fileID: 1295531339}
+  get_question_category: {fileID: 334484177}
   get_current_day: {fileID: 1499245407}
   get_current_mental: {fileID: 714498725}
   get_current_health: {fileID: 906161121}
@@ -2128,7 +2128,6 @@ MonoBehaviour:
   audioSource: {fileID: 461885052}
   clip: {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}
   volume: 0.5
-  delay: 0.5
 --- !u!4 &1898916716
 Transform:
   m_ObjectHideFlags: 0

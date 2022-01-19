@@ -224,7 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de25a9d707e2fd1438a7de8055177d06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 1667866953}
+  sceneAudioSource: {fileID: 1667866953}
   delay: 40
   show_current_day: {fileID: 425674424}
   show_current_health: {fileID: 998068397}
@@ -1822,7 +1822,6 @@ MonoBehaviour:
   audioSource: {fileID: 661962824}
   clip: {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}
   volume: 0.5
-  delay: 0.5
 --- !u!4 &1840248544
 Transform:
   m_ObjectHideFlags: 0

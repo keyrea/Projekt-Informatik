@@ -1,48 +1,53 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Mono.Data.Sqlite;
-using System.Data;
+﻿// using System.Collections;
+// using System.Collections.Generic;
+// using Mono.Data.Sqlite;
+// using System.Data;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class AtributeChange : MonoBehaviour
 {
-    public GameObject myGameObject;
-    public Text get_question_type;
-    public Text get_current_day;
+    public GameObject sceneManager; // ссылка на объект отвечающий за переход между сценами
+    public Text get_question_category; // текстовое поле с категорией вопроса
+    public Text get_current_day; // текстовое поле с номером текущего дня
     public Text get_current_mental; // текстовое поле для значения "Ментальное здоровье"
     public Text get_current_health; // текстовое поле для значения "Здоровье"
     public Text get_current_progress; // текстовое поле для значения "Знания"
     public Text get_current_money; // текстовое поле для значения "Деньги"
 
-    public Text get_yes_mental; // текстовое поле для значения "да Ментальное здоровье"
-    public Text get_yes_health; // текстовое поле для значения "да Здоровье"
-    public Text get_yes_progress; // текстовое поле для значения "да Знания"
-    public Text get_yes_money; // текстовое поле для значения "да Деньги"
+    public Text get_yes_mental; // текстовое поле для значения "Ментальное здоровье" ответа "да"
+    public Text get_yes_health; // текстовое поле для значения "Здоровье" ответа "да"
+    public Text get_yes_progress; // текстовое поле для значения "Знания" ответа "да"
+    public Text get_yes_money; // текстовое поле для значения "Деньги" ответа "да"
 
-    public Text get_no_mental; // текстовое поле для значения "да Ментальное здоровье"
-    public Text get_no_health; // текстовое поле для значения "да Здоровье"
-    public Text get_no_progress; // текстовое поле для значения "да Знания"
-    public Text get_no_money; // текстовое поле для значения "да Деньги"
+    public Text get_no_mental; // текстовое поле для значения "Ментальное здоровье" ответа "нет"
+    public Text get_no_health; // текстовое поле для значения "Здоровье" ответа "нет"
+    public Text get_no_progress; // текстовое поле для значения "Знания" ответа "нет"
+    public Text get_no_money; // текстовое поле для значения "Деньги" ответа "нет"
 
-    public void changeAtribute(string answer_type)
-    {// тип ответа да/нет
-        // новые текущие занчения параметров
+    public void changeAtribute(string answer_type)// получает тип ответа да/нет
+    {
+        // запрос в БД
         string result = "";
+        // значение для проверки полявления случайного событя
         bool event_was = false;
+        // категория вопроса
+        int question_type = int.Parse(get_question_category.text.ToString());
+
+        // новые текущие занчения параметров (по умолчания хранят старые текущие значения)
         int new_current_day = int.Parse(get_current_day.text.ToString());
         int new_current_mental = int.Parse(get_current_mental.text.ToString());
         int new_current_health = int.Parse(get_current_health.text.ToString());
         int new_current_progress = int.Parse(get_current_progress.text.ToString());
         int new_current_money = int.Parse(get_current_money.text.ToString());
 
-        int question_type = int.Parse(get_question_type.text.ToString());
-
+        // значения блокировки парамертра
         int new_curent_block_mental = 0;
         int new_curent_block_health = 0;
         int new_curent_block_progress = 0;
         int new_curent_block_money = 0;
 
+        // если тип ответа "да" прибавить к текущим значениям значения ответа "да"
         if (answer_type == "yes")
         {
             new_current_day = int.Parse(get_current_day.text.ToString()) + 1;
@@ -51,6 +56,7 @@ public class AtributeChange : MonoBehaviour
             new_current_progress += int.Parse(get_yes_progress.text.ToString());
             new_current_money += int.Parse(get_yes_money.text.ToString());
         }
+        // если тип ответа "нет" прибавить к текущим значениям значения ответа "нет"
         else if (answer_type == "no")
         {
             new_current_day = int.Parse(get_current_day.text.ToString()) + 1;
@@ -59,6 +65,7 @@ public class AtributeChange : MonoBehaviour
             new_current_progress += int.Parse(get_no_progress.text.ToString());
             new_current_money += int.Parse(get_no_money.text.ToString());
         }
+        // если тип ответа "ок" прибавить к текущим значениям значения ответа "ок"
         else if (answer_type == "ok")
         {
             new_current_day = int.Parse(get_current_day.text.ToString());
@@ -66,6 +73,7 @@ public class AtributeChange : MonoBehaviour
             new_current_health += int.Parse(get_yes_health.text.ToString());
             new_current_progress += int.Parse(get_yes_progress.text.ToString());
             new_current_money += int.Parse(get_yes_money.text.ToString());
+            // установить проверки появления случайного события на "true"(уже появлялось)
             event_was = true;
         }
 
@@ -75,11 +83,13 @@ public class AtributeChange : MonoBehaviour
         if (new_current_progress > 10) { new_current_progress = 10; }
         if (new_current_money > 10) { new_current_money = 10; }
 
+        // заблокировать параметр взависимости от категории вопроса
         if (question_type == 1) { new_curent_block_mental = 1; }
         else if (question_type == 2) { new_curent_block_health = 1; }
         else if (question_type == 3) { new_curent_block_progress = 1; }
         else if (question_type == 4) { new_curent_block_money = 1; }
 
+        // формирование и отрпвака запроса в БД 
         result = MyDataBase.ExecuteQueryWithAnswer("UPDATE Player " +
                                             "SET day =" + new_current_day + "," +
                                             "current_mental =" + new_current_mental + "," +
@@ -96,20 +106,25 @@ public class AtributeChange : MonoBehaviour
         if (new_current_mental <= 0 || new_current_health <= 0 ||
             new_current_progress <= 0 || new_current_money <= 0)
         {
-            myGameObject.GetComponent<ChangeScene>().NextScene(7);
+            sceneManager.GetComponent<ChangeScene>().NextScene(7);
         }
+        // иначе перейти в меню выбора категории вопроса или запустить случайное событие
         else
-        { //иначе перейти в меню выбора вопроса или запустить случайное событие
+        {
+            // случайное значение случайного события
             System.Random randomEventChance = new System.Random();
             int eventChance = randomEventChance.Next(0, 100);
             Debug.Log(eventChance);
+
+            // шанс случайного события 10%, если случайное значение подходит, запускается случайное событие
             if (event_was == false && eventChance >= 0 && eventChance <= 10)
-            {//шанс сулчайного события 10%
-                myGameObject.GetComponent<ChangeScene>().NextScene(6);
+            {
+                sceneManager.GetComponent<ChangeScene>().NextScene(6);
             }
+            // иначе запускается сцена выбора категрии вопроса
             else
             {
-                myGameObject.GetComponent<ChangeScene>().NextScene(1);
+                sceneManager.GetComponent<ChangeScene>().NextScene(1);
             }
         }
     }
