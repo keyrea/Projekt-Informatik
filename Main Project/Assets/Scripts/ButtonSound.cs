@@ -1,6 +1,4 @@
-﻿// using System.Collections;
-// using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ButtonSound : MonoBehaviour
 {
@@ -9,7 +7,7 @@ public class ButtonSound : MonoBehaviour
     public float volume = 0.5f;
     public void playSound()
     {
-        // при вызове метода воспроивести звуковой эффект нажатия кнопки
+        // when the method is called, play the sound effect of a button click
         audioSource.PlayOneShot(clip, volume);
     }
 }

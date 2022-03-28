@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-// using UnityEngine.Networking;
 using System.Data;
 using Mono.Data.Sqlite;
 using System.IO;
@@ -17,7 +16,7 @@ static class MyDataBase
         DBPath = GetDatabasePath();
     }
 
-    /// <summary> Возвращает путь к БД. Если её нет в нужной папке на Андроиде, то копирует её с исходного apk файла. </summary>
+    /// <summary> Returns the path to the database. If it is not in the desired folder on Android, then it copies it from the original apk file. </summary>
     private static string GetDatabasePath()
     {
         #if UNITY_EDITOR
@@ -33,25 +32,20 @@ static class MyDataBase
         #endif
     }
 
-    /// <summary> Распаковывает базу данных в указанный путь. </summary>
-    /// <param name="toPath"> Путь в который нужно распаковать базу данных. </param>
+    /// <summary> Unpacks the database to the specified path. </summary>
+    /// <param name="toPath"> The path to which to unpack the database. </param>
     private static void UnpackDatabase(string toPath)
     {
         string fromPath = Path.Combine(Application.streamingAssetsPath, fileName);
 
-        // в качестве альтернативы WWW предлагается UnityWebRequest
+        // UnityWebRequest is offered as an alternative to WWW
         WWW reader = new WWW(fromPath);
         while (!reader.isDone) { }
         File.WriteAllBytes(toPath, reader.bytes);
-
-        // но UnityWebRequest не работает на Android
-
-        // UnityWebRequest reader_new = new UnityWebRequest(fromPath);
-        // while (reader_new.isDone) { }
-        // File.WriteAllBytes(toPath, reader_new.downloadHandler.data);
+        // but UnityWebRequest doesn't work on android
     }
 
-    /// <summary> Этот метод открывает подключение к БД. </summary>
+    /// <summary> This method opens a connection to the database. </summary>
     private static void OpenConnection()
     {
         connection = new SqliteConnection("Data Source=" + DBPath);
@@ -59,15 +53,15 @@ static class MyDataBase
         connection.Open();
     }
 
-    /// <summary> Этот метод закрывает подключение к БД. </summary>
+    /// <summary> This method closes the database connection. </summary>
     public static void CloseConnection()
     {
         connection.Close();
         command.Dispose();
     }
 
-    /// <summary> Этот метод выполняет запрос query. </summary>
-    /// <param name="query"> Текст запроса. </param>
+    /// <summary> This method executes a query. </summary>
+    /// <param name="query"> Request text. </param>
     public static void ExecuteQueryWithoutAnswer(string query)
     {
         OpenConnection();
@@ -76,9 +70,9 @@ static class MyDataBase
         CloseConnection();
     }
 
-    /// <summary> Этот метод выполняет запрос query и возвращает ответ запроса. </summary>
-    /// <param name="query"> Текст запроса. </param>
-    /// <returns> Возвращает значение 1 строки 1 столбца, если оно имеется. </returns>
+    /// <summary> This method executes a query and returns the query response. </summary>
+    /// <param name="query"> Request text. </param>
+    /// <returns> Returns the value of row 1 of column 1, if any. </returns>
     public static string ExecuteQueryWithAnswer(string query)
     {
         OpenConnection();
@@ -90,8 +84,8 @@ static class MyDataBase
         else return null;
     }
 
-    /// <summary> Этот метод возвращает таблицу, которая является результатом выборки запроса query. </summary>
-    /// <param name="query"> Текст запроса. </param>
+    /// <summary> This method returns a table that is the result of a query query. </summary>
+    /// <param name="query"> Request text. </param>
     public static DataTable GetTable(string query)
     {
         OpenConnection();

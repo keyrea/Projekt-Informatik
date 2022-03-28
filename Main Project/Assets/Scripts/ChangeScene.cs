@@ -1,26 +1,16 @@
-﻿// using System.Collections;
-// using System.Collections.Generic;
-// using System.Data;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ChangeScene : MonoBehaviour
 {
-    // public AudioSource audioSource;
-    // public AudioClip clip;
-    // public float volume=0.5f;
-    // public float delay=0.5f;
-    // float m_LastPressTime;
-    // float m_PressDelay = 0.001f;
-
-    // Метод для перехода к следующей сцене. Аргумент _sceneNumber - номер сцены. 
-    // Сцены и их номера можно найти в Build Settings
+    // Method for moving to the next scene. The _sceneNumber argument is the scene number.
+    // Scenes and their numbers can be found in Build Settings
     public void NextScene(int _sceneNumber)
     {
         SceneManager.LoadScene(_sceneNumber);
     }
 
-    // Метод для перехода к следующей сцене. Устанаваилвает значения параметров игрока по умолчанию
+    // Method for moving to the next scene. Sets player options to default values
     public void NextSceneAndToDefault(int _sceneNumber)
     {
         string result = MyDataBase.ExecuteQueryWithAnswer("UPDATE Player " +
